@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Funcart</string>
+
+    <!-- login -->
+    <string name="emailOrPhoneNumber">Email or Phonenumber</string>
+    <string name="Password">Password</string>
+    <string name="new_to_funcart">New To Funcart</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="login">Login</string>
+
+    <!-- signup -->
+    <string name="create_account">Create Account</string>
+    <string name="Name">Username</string>
+    <string name="PhoneNumber">Phonenumber</string>
+    <string name="Email_address">Email Address</string>
+    <string name="signup">Singup</string>
+
+    <!-- Cart -->
+    <string name="Cart">My Cart</string>
+
+</resources>
