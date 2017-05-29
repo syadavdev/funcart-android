@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="UserName1" type="id" />
+    <item name="funcart_Home" type="id" />
+    <item name="Cart_hot" type="id"/>
+    <item name="TBl" type="id"/>
+    <item name="my_Cart" type="id"/>
+    <item name="mycart" type="id"/>
+    <item name="notif_count" type="id"/>
+    <item name="UserName" type="id"/>
+    <item name="Phone_Number" type="id"/>
+    <item name="editTextpassword" type="id"/>
+    <item name="editTextname" type="id"/>
+    <item name="editTextEmail" type="id"/>
+    <item name="editTextpass" type="id"/>
+    <item name="editTextphone" type="id"/>
+    <item name="username" type="id">username</item>
+</resources>

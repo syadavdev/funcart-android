@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.funcart.ItemsList">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/home_tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorindigo"
+        android:minHeight="?attr/actionBarSize"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:text="Funcart_Home"
+        android:textSize="20sp"
+        android:id="@+id/textView"/>
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:text="0"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="330dp"
+        android:textSize="20sp"
+        android:id="@+id/textCount"
+        />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:background="@drawable/new_cart"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/textCount"
+        android:layout_alignEnd="@+id/textCount"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="58dp"
+        android:id="@+id/bike"
+        android:background="@drawable/motorcycle"/>
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="260dp"
+        android:text="Add to cart"
+        android:id="@+id/addBike"
+        android:onClick="addBike"/>
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="200dp"
+        android:text="Remove to cart"
+        android:id="@+id/removeBike"
+        android:onClick="removeBike"
+        />
+
+</RelativeLayout>

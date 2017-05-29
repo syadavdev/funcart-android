@@ -38,3 +38,10 @@ captures/
 
 # Keystore files
 *.jks
+
+.gradle/
+.idea/workspace.xml
+Funcart.iml
+app/app.iml
+build/
+local.properties
