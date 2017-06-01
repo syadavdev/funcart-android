@@ -14,7 +14,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#90caf9"
-    tools:context="com.example.funcart.Signup">
+    tools:context="com.example.funcart.SignupActivity">
 
     <TextView
         android:layout_width="wrap_content"

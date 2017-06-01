@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
-public class Mycart extends AppCompatActivity {
+public class MycartActivity extends AppCompatActivity {
 
       Toolbar tblMyCart;
       ImageView picture;
