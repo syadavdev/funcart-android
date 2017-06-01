@@ -11,18 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.funcart.HelperClass.Utill;
+import com.example.funcart.requestClass.LoginPost;
+import com.example.funcart.helperClass.CustomerUtil;
+import com.example.funcart.helperClass.Validator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class Login extends AppCompatActivity  implements View.OnClickListener {
 
   private Button login, createAccount;
-  private TextView  UserName,Password;
-  private EditText  name,pass;
-  private SignUpPost signpst = null;
+  private TextView tEmailOrPhonenumber,tPassword;
+  private EditText  eEmailOrPhonenumber,ePassword;
+
   private String url="http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/login";
 
     @Override
@@ -30,19 +36,19 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_in);
 
-       //define to Button
+        //define to Button
         login = (Button) findViewById(R.id.Login);
         createAccount = (Button) findViewById(R.id.createAccount);
 
         //define TextView
-        UserName = (TextView) findViewById(R.id.textUser);
-        Password =(TextView) findViewById(R.id.txtPass);
+        tEmailOrPhonenumber = (TextView) findViewById(R.id.textEmailOrPhoneNumber);
+        tPassword =(TextView) findViewById(R.id.textPassword);
 
-      //Define Edittext
-        name =(EditText) findViewById(R.id.username);
-        pass =(EditText) findViewById(R.id.password);
+        //Define Edittext
+        eEmailOrPhonenumber =(EditText) findViewById(R.id.editEmailOrPhoneNumber);
+        ePassword =(EditText) findViewById(R.id.editPassword);
 
-          /*set on listener*/
+        /*set on listener*/
         createAccount.setOnClickListener(this);
         login.setOnClickListener(this);
     }
@@ -51,23 +57,37 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case  R.id.Login:
-                signpst = new SignUpPost(name.getText().toString(),pass.getText().toString(),null,null);
-                   if (name.getText().toString().trim().isEmpty() || name.equals(" ")  ){
-                       name.setError("enter name");
-                   }  if(pass.getText().toString().trim().isEmpty() || pass.equals(" ")){
-                       pass.setError("enter password");
-                   }else {
-                      new Task().execute(signpst);
-            }
-            break;
+
+                if (eEmailOrPhonenumber.getText().toString().isEmpty() || eEmailOrPhonenumber.getText().toString() == null){
+                    eEmailOrPhonenumber.setError("enter name");
+                }else if(ePassword.getText().toString().isEmpty() || ePassword.getText().toString() == null){
+                    ePassword.setError("enter password");
+                }else if(!Validator.passwordValidate(ePassword.getText().toString())){
+                    ePassword.setError("Invalid Password");
+                }else if(!Validator.emailValidate(eEmailOrPhonenumber.getText().toString())){
+                    if(Validator.phoneNumberValidate(eEmailOrPhonenumber.getText().toString())){
+                        new Task().execute(new LoginPost(eEmailOrPhonenumber.getText().toString(),ePassword.getText().toString()));
+                    }else{
+                        eEmailOrPhonenumber.setError("Invalid Email or Phonenumber");
+                    }
+                }else if(!Validator.phoneNumberValidate(eEmailOrPhonenumber.getText().toString())){
+                    if(Validator.emailValidate(eEmailOrPhonenumber.getText().toString())){
+                        new Task().execute(new LoginPost(eEmailOrPhonenumber.getText().toString(),ePassword.getText().toString()));
+                    }else{
+                        eEmailOrPhonenumber.setError("Invalid Email or Phonenumber");
+                    }
+                }else{
+                    new Task().execute(new LoginPost(eEmailOrPhonenumber.getText().toString(),ePassword.getText().toString()));
+                }
+                break;
             case R.id.createAccount:
                 startActivity(new Intent(Login.this, Signup.class));
-                Toast.makeText(getApplicationContext(),"Create new account",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Enter Your Details",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    private class Task  extends AsyncTask<SignUpPost,Integer,Map<String,String>>{
+    private class Task  extends AsyncTask<LoginPost,Integer,JSONObject>{
         ProgressDialog dialog;
 
         @Override
@@ -78,33 +98,57 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
             dialog.show();
         }
         @Override
-        protected Map<String, String> doInBackground(SignUpPost... params) {
-            Utill uObj = new Utill();
-            SignUpPost log  =params[0];
-            HashMap<String,String> login = new HashMap<String,String>();
-            login.put("emailOrPhoneNumber",log.getname());
-            login.put("password",log.getPassword());
-            Map<String,String> result  = uObj.makeWebServiceCall(url,login);
+        protected JSONObject doInBackground(LoginPost... params) {
+            CustomerUtil customerUtil = new CustomerUtil();
+            LoginPost log = params[0];
+
+            HashMap<String,String> loginMap = new HashMap<String,String>();
+            loginMap.put("emailOrPhoneNumber", log.getEmailOrPhonenumber());
+            loginMap.put("password", log.getPassword());
+
+            JSONObject result  = customerUtil.makeWebServiceCall(url,loginMap);
             return result;
         }
         @Override
-        protected void onPostExecute(Map<String, String> result) {
-            if ( dialog.isShowing()) dialog.dismiss();
+        protected void onPostExecute(JSONObject result) {
+            boolean flag = false;
+            if (dialog.isShowing())
+                dialog.dismiss();
 
-            if(result != null){
-                if(result.containsKey(200)){
-                    Toast.makeText(getApplicationContext(),result.get("200"),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Login.this,Signup.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    for (Map.Entry<String, String> entry : result.entrySet()) {
-                        Toast.makeText(Login.this, entry.getValue(), Toast.LENGTH_SHORT).show();
+            if(result != null) {
+                try {
+                    if(result.getInt("responseCode") == 200 || result.getInt("responseCode") == 201) {
+                        Intent i = new Intent(Login.this, ItemsList.class);
+                        i.putExtra("token",result.getString("token"));
+                        i.putExtra("secret",result.getString("secret"));
+
+                        String fileName = "/CustomerData.txt";
+                        File file = new File(getApplicationContext().getCacheDir().getAbsolutePath() + fileName);
+                        if(file.createNewFile()){
+                            FileWriter fileWriter = new FileWriter(file);
+                            result.put("password",ePassword.getText().toString());
+                            result.remove("responseCode");
+                            result.remove("token");
+                            result.remove("secret");
+                            fileWriter.write(result.toString());
+                            fileWriter.flush();
+                            fileWriter.close();
+                        }
+
+                        startActivity(new Intent(i));
+                        finish();
+                    } else {
+                        String errorMsg = "errorMsg : "+result.getString("errorMsg")+" , errorCode : "+result.getInt("errorCode");
+                        eEmailOrPhonenumber.setError(errorMsg);
                     }
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                 } else{
-                        Toast.makeText(getApplicationContext(), "Some unknown error occuured. Please try after some time.", Toast.LENGTH_LONG).show();
-                    }
-                }
+            } else{
+                Toast.makeText(getApplicationContext(), "Some unknown error occuured. Please try after some time.", Toast.LENGTH_LONG).show();
             }
         }
+    }
+}

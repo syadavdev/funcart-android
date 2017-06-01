@@ -15,56 +15,54 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/colorindigo"
-        android:minHeight="?attr/actionBarSize"/>
+        android:background="?attr/colorButtonNormal"
+        android:minHeight="?attr/actionBarSize" />
 
     <TextView
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:text="Funcart_Home"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/app_name"
         android:textSize="20sp"
-        android:id="@+id/textView"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="30dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:text="0"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="330dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:id="@+id/textCount"
-        />
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:background="@drawable/new_cart"
-        android:layout_alignTop="@+id/textView"
-        android:layout_alignRight="@+id/textCount"
-        android:layout_alignEnd="@+id/textCount"/>
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
 
     <ImageView
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/ic_cart_icon"
+        android:layout_alignBottom="@+id/home_tool" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="58dp"
-        android:id="@+id/bike"
-        android:background="@drawable/motorcycle"/>
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="260dp"
-        android:text="Add to cart"
-        android:id="@+id/addBike"
-        android:onClick="addBike"/>
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginLeft="200dp"
-        android:text="Remove to cart"
-        android:id="@+id/removeBike"
-        android:onClick="removeBike"
-        />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/home_tool">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/home_tool" />
+
+    </ScrollView>
 
 </RelativeLayout>
