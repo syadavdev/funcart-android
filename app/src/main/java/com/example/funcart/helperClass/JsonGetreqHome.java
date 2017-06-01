@@ -1,4 +1,4 @@
-package com.example.funcart.HelperClass;
+package com.example.funcart.helperClass;
 
 /**
  * Created by AnandSharma on 5/26/2017.

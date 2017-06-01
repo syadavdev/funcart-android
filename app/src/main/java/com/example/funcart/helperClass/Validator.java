@@ -1,4 +1,4 @@
-package com.example.funcart.HelperClass;
+package com.example.funcart.helperClass;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

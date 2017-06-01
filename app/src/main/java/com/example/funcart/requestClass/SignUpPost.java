@@ -1,11 +1,10 @@
-package com.example.funcart;
+package com.example.funcart.requestClass;
 
 /**
  * Created by AnandSharma on 5/4/2017.
  */
 
 public class SignUpPost {
-
 
     private String name;
     private String password;
@@ -15,15 +14,12 @@ public class SignUpPost {
     public SignUpPost() {
     }
 
-
     public SignUpPost(String name, String password, String email, String phoneNumber) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
-
-
 
     public String getname() {
         return name;
