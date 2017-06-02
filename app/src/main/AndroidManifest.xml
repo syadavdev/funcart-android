@@ -10,8 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".Login">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +18,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Signup"
+            android:name=".SignupActivity"
             android:label="Signup"
-            android:parentActivityName=".Login">
+            android:parentActivityName=".LoginActivity">
             <intent-filter>
                 <action android:name="com.example.funcart.signup" />
 
@@ -29,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemsList"
+            android:name=".ItemsListActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.example.funcart.itemsList" />
@@ -38,9 +37,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Mycart"
+            android:name=".MycartActivity"
             android:label="mycart"
-            android:parentActivityName=".ItemsList">
+            android:parentActivityName=".ItemsListActivity">
             <intent-filter>
                 <action android:name="com.example.funcart.mycart" />
 

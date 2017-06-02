@@ -11,6 +11,13 @@ public class ItemData{
     private String picName;
     private double price;
 
+    public ItemData(int itemId, String name, String picName, double price) {
+        this.itemId = itemId;
+        this.name = name;
+        this.picName = picName;
+        this.price = price;
+    }
+
     public int getItemId() {
         return itemId;
     }
