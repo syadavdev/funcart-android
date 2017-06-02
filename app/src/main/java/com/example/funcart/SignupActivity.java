@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 
-public class Signup extends Activity  {
+public class SignupActivity extends Activity  {
 
     Button signup,Loginsign;
     EditText name,phoneNumber,email,password;
@@ -80,7 +80,7 @@ public class Signup extends Activity  {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(Signup.this);
+            dialog = new ProgressDialog(SignupActivity.this);
             dialog.setMessage("please wait .....");
             dialog.setCancelable(false);
             dialog.show();
@@ -108,7 +108,7 @@ public class Signup extends Activity  {
                 if(result != null) {
                     if(result.getInt("responseCode") == 201 || result.getInt("responseCode") == 200) {
                         Toast.makeText(getApplicationContext(),"Account Created Please Login", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Signup.this, Login.class);
+                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                         String fileName = "/SignupData.txt";
                         File file = new File(getApplicationContext().getCacheDir().getAbsolutePath() + fileName);
                         if(file.createNewFile()){

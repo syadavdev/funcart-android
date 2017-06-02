@@ -14,18 +14,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by quocnguyen on 03/08/2016.
- */
-public class CustomListAdapter extends ArrayAdapter<ItemDatas> {
+public class CustomListAdapter extends ArrayAdapter<ItemData> {
 
     ArrayList<ItemData> itemDataArrayList;
     Context context;
     int resource;
+    private final String imageUrl = "http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/images/";
 
-    public CustomListAdapter(Context context, int resource, ArrayList<ItemData> products) {
-        super(context, resource, itemDataArrayList);
-        this.items = products;
+    public CustomListAdapter(Context context, int resource, ArrayList<ItemData> itemDataList) {
+        super(context, resource, itemDataList);
+        this.itemDataArrayList = itemDataList;
         this.context = context;
         this.resource = resource;
     }
@@ -39,16 +37,16 @@ public class CustomListAdapter extends ArrayAdapter<ItemDatas> {
             convertView = layoutInflater.inflate(R.layout.custom_list_layout, null, true);
 
         }
-        ItemData product = getItem(position);
+        ItemData itemData = getItem(position);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageViewProduct);
-        Picasso.with(context).load(product.getImage()).into(imageView);
+        Picasso.with(context).load(imageUrl+itemData.getPicName()).into(imageView);
 
         TextView txtName = (TextView) convertView.findViewById(R.id.txtName);
-        txtName.setText(product.getName());
+        txtName.setText(itemData.getName());
 
         TextView txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
-        txtPrice.setText(product.getPrice());
+        txtPrice.setText(Double.toString(itemData.getPrice()));
 
         return convertView;
     }

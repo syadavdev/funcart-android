@@ -23,7 +23,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Login extends AppCompatActivity  implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity  implements View.OnClickListener {
 
   private Button login, createAccount;
   private TextView tEmailOrPhonenumber,tPassword;
@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
                 }
                 break;
             case R.id.createAccount:
-                startActivity(new Intent(Login.this, Signup.class));
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 Toast.makeText(getApplicationContext(),"Enter Your Details",Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(Login.this);
+            dialog = new ProgressDialog(LoginActivity.this);
             dialog.setMessage("please wait... ");
             dialog.show();
         }
@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity  implements View.OnClickListener {
             if(result != null) {
                 try {
                     if(result.getInt("responseCode") == 200 || result.getInt("responseCode") == 201) {
-                        Intent i = new Intent(Login.this, ItemsList.class);
+                        Intent i = new Intent(LoginActivity.this, ItemsListActivity.class);
                         i.putExtra("token",result.getString("token"));
                         i.putExtra("secret",result.getString("secret"));
 

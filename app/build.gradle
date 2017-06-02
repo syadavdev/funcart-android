@@ -33,5 +33,12 @@ dependencies {
 dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
+}
+
 
 
