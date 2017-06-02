@@ -1,0 +1,57 @@
+"main@4349" prio=5 tid=0x1 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	  at com.example.anandsharma.funcart.signup$1.onClick(signup.java:61)
+	  at android.view.View.performClick(View.java:5610)
+	  at android.view.View$PerformClick.run(View.java:22265)
+	  at android.os.Handler.handleCallback(Handler.java:751)
+	  at android.os.Handler.dispatchMessage(Handler.java:95)
+	  at android.os.Looper.loop(Looper.java:154)
+	  at android.app.ActivityThread.main(ActivityThread.java:6077)
+	  at java.lang.reflect.Method.invoke(Method.java:-1)
+	  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:865)
+	  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:755)
+
+"Signal Catcher@4687" daemon prio=5 tid=0x2f0 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"HeapTaskDaemon@4688" daemon prio=5 tid=0x2f5 nid=NA waiting for monitor entry
+  java.lang.Thread.State: BLOCKED
+	 Incompatible thread state: thread not suspended
+
+"FinalizerDaemon@4689" daemon prio=5 tid=0x2f3 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"FinalizerWatchdogDaemon@4690" daemon prio=5 tid=0x2f4 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"Binder:19865_1@4641" prio=5 tid=0x2f6 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"ReferenceQueueDaemon@4691" daemon prio=5 tid=0x2f2 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"Binder:19865_2@4692" prio=5 tid=0x2f7 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"Profile Saver@4348" daemon prio=5 tid=0x2f8 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"Thread-3@4356" prio=5 tid=0x2fa nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"RenderThread@4606" prio=5 tid=0x2fb nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"hwuiTask1@4614" prio=5 tid=0x2fe nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
