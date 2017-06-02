@@ -3,6 +3,8 @@ package com.example.funcart;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ListView;
 
 import com.example.funcart.DataClass.ItemData;
@@ -37,6 +39,13 @@ public class ItemsListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.items_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     class ReadJSON extends AsyncTask<String, Integer, String> {
 
         @Override
@@ -60,7 +69,7 @@ public class ItemsListActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             CustomListAdapter adapter = new CustomListAdapter(
-                    getApplicationContext(), R.layout.custom_list_layout, itemDataList
+                    getApplicationContext(), R.layout.customer_item_list_layout, itemDataList
             );
             lv.setAdapter(adapter);
         }

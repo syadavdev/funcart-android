@@ -34,7 +34,7 @@ public class CustomListAdapter extends ArrayAdapter<ItemData> {
         if (convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.custom_list_layout, null, true);
+            convertView = layoutInflater.inflate(R.layout.customer_item_list_layout, null, true);
 
         }
         ItemData itemData = getItem(position);
@@ -46,7 +46,7 @@ public class CustomListAdapter extends ArrayAdapter<ItemData> {
         txtName.setText(itemData.getName());
 
         TextView txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
-        txtPrice.setText(Double.toString(itemData.getPrice()));
+        txtPrice.setText(Double.toString(itemData.getPrice())+" ₹");
 
         return convertView;
     }

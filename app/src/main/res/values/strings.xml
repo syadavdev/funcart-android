@@ -26,6 +26,11 @@
     <!-- customlist -->
     <string name="add_to_cart">Add to Cart</string>
 
+    <!-- cart -->
+    <string name="your_cart">Your Cart</string>
+    <string name="checkout_button">Checkout</string>
+    <string name="remove_item">Remove Item</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
