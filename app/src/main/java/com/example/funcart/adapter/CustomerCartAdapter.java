@@ -1,7 +1,9 @@
-package com.example.funcart;
+package com.example.funcart.adapter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.funcart.R;
 
 public class CustomerCartAdapter extends AppCompatActivity {
 

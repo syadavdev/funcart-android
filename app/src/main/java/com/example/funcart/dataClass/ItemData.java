@@ -1,4 +1,4 @@
-package com.example.funcart.DataClass;
+package com.example.funcart.dataClass;
 
 /**
  * Created by mario on 30/05/17.

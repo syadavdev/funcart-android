@@ -7,7 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ListView;
 
-import com.example.funcart.DataClass.ItemData;
+import com.example.funcart.dataClass.ItemData;
+import com.example.funcart.adapter.ItemsListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,7 +69,7 @@ public class ItemsListActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            CustomListAdapter adapter = new CustomListAdapter(
+            ItemsListAdapter adapter = new ItemsListAdapter(
                     getApplicationContext(), R.layout.customer_item_list_layout, itemDataList
             );
             lv.setAdapter(adapter);

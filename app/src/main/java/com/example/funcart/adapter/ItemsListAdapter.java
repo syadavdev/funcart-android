@@ -1,4 +1,4 @@
-package com.example.funcart;
+package com.example.funcart.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,19 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.funcart.DataClass.ItemData;
+import com.example.funcart.dataClass.ItemData;
+import com.example.funcart.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CustomListAdapter extends ArrayAdapter<ItemData> {
+public class ItemsListAdapter extends ArrayAdapter<ItemData> {
 
     ArrayList<ItemData> itemDataArrayList;
     Context context;
     int resource;
     private final String imageUrl = "http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/images/";
 
-    public CustomListAdapter(Context context, int resource, ArrayList<ItemData> itemDataList) {
+    public ItemsListAdapter(Context context, int resource, ArrayList<ItemData> itemDataList) {
         super(context, resource, itemDataList);
         this.itemDataArrayList = itemDataList;
         this.context = context;

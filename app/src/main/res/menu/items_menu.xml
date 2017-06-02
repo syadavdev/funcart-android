@@ -10,11 +10,6 @@
         android:visible="true"
         app:showAsAction="always" >
 
-    <item
-        android:id="@+id/phone"
-        android:title=""
-        android:showAsAction="always" />
-
     </item>
 
 </menu>
