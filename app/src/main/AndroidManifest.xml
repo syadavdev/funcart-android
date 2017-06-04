@@ -9,9 +9,8 @@
         android:icon="@drawable/shopping"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,19 +20,9 @@
         <activity
             android:name=".SignupActivity"
             android:label="Signup"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:parentActivityName=".LoginActivity">
             <intent-filter>
                 <action android:name="com.example.funcart.signup" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ItemsListActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="com.example.funcart.itemsList" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -48,7 +37,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".adapter.CustomerCartAdapter"></activity>
+        <activity android:name=".ItemsListActivity">
+            <intent-filter>
+                <action android:name="com.example.funcart.itemsList" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

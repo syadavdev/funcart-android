@@ -17,9 +17,6 @@ public class MycartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mycart);
 
-        /*tblMyCart =(Toolbar) findViewById(R.id.t);
-        picture =(ImageView) findViewById(R.id.iView);
-*/
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
 

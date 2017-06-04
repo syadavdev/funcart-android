@@ -49,25 +49,28 @@ public class SignupActivity extends Activity  {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUpPost signUpost = new SignUpPost(name.getText().toString(),password.getText().toString(),email.getText().toString(),phoneNumber.getText().toString());
+                SignUpPost signUpost = new SignUpPost(name.getText().toString(), password.getText().toString(), email.getText().toString(), phoneNumber.getText().toString());
                 //  register();
-                if(name.getText().toString().isEmpty()){
+                boolean var1 = false, var2 = false, var3 = false, var4 = false, var5 = false, var6 = false, var7 = false, var8 = false;
+                if (var1 = name.getText().toString().isEmpty())
                     name.setError("enter name");
-                }else if(phoneNumber.getText().toString().isEmpty()){
+                if (var2 = phoneNumber.getText().toString().isEmpty())
                     phoneNumber.setError("enter phoneNumber");
-                }else if(email.getText().toString().isEmpty()){
+                if (var3 = email.getText().toString().isEmpty())
                     email.setError(" enter email");
-                }else if(password.getText().toString().isEmpty()){
+                if (var4 = password.getText().toString().isEmpty())
                     password.setError("enter password");
-                }else if(!Validator.nameValidate(name.getText().toString())){
-                    name.setError("invalid name");
-                }else if(!Validator.passwordValidate(password.getText().toString())){
-                    password.setError("invalid password");
-                }else if(!Validator.phoneNumberValidate(phoneNumber.getText().toString())){
-                    phoneNumber.setError("invalid phoneNumber");
-                }else if(!Validator.emailValidate(email.getText().toString())){
-                    email.setError("invalid email");
-                }else{
+
+                    if ( !var1 && (var5 = !Validator.nameValidate(name.getText().toString())))
+                        name.setError("invalid name");
+                    if ( !var2 && (var6 = !Validator.passwordValidate(password.getText().toString())))
+                        password.setError("invalid password");
+                    if ( !var3 && (var7 = !Validator.phoneNumberValidate(phoneNumber.getText().toString())))
+                        phoneNumber.setError("invalid phoneNumber");
+                    if ( !var4 && (var8 = !Validator.emailValidate(email.getText().toString())))
+                        email.setError("invalid email");
+
+                if(!var1 && !var2 && !var3 && !var4 && !var5 && !var6 && !var7 && !var8){
                     new MyTask().execute(signUpost);
                 }
             }
