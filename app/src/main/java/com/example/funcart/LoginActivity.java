@@ -26,7 +26,6 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity  implements View.OnClickListener {
 
   private Button login, createAccount;
-  private TextView tEmailOrPhonenumber,tPassword;
   private EditText  eEmailOrPhonenumber,ePassword;
 
   private String url="http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/login";
@@ -39,10 +38,6 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         //define to Button
         login = (Button) findViewById(R.id.Login);
         createAccount = (Button) findViewById(R.id.createAccount);
-
-        //define TextView
-        tEmailOrPhonenumber = (TextView) findViewById(R.id.textEmailOrPhoneNumber);
-        tPassword =(TextView) findViewById(R.id.textPassword);
 
         //Define Edittext
         eEmailOrPhonenumber =(EditText) findViewById(R.id.editEmailOrPhoneNumber);
@@ -138,8 +133,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
                         startActivity(new Intent(i));
                         finish();
                     } else {
-                        String errorMsg = "errorMsg : "+result.getString("errorMsg")+" , errorCode : "+result.getInt("errorCode");
-                        eEmailOrPhonenumber.setError(errorMsg);
+                        eEmailOrPhonenumber.setError("errorMsg : "+result.getString("errorMsg")+" , errorCode : "+result.getInt("errorCode"));
                     }
                 }catch (JSONException e) {
                     e.printStackTrace();
