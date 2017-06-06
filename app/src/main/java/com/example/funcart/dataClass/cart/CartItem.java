@@ -1,6 +1,6 @@
 package com.example.funcart.dataClass.cart;
 
-public class CartItemDto {
+public class CartItem {
 	
 	private String itemName;
 	private String itemPicName;
