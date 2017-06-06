@@ -44,6 +44,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:parentActivityName=".MycartActivity">
+            <action android:name="com.example.funcart.payment" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+        <activity android:name=".OrderActivity"></activity>
     </application>
 
 </manifest>
