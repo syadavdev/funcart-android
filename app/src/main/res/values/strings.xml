@@ -31,13 +31,6 @@
     <string name="checkout_button">Checkout</string>
     <string name="remove_item">Remove Item</string>
 
-    <!-- payment-->
-    <string name="payment">Choose Payment</string>
-
-    <!-- order-->
-    <string name="order">Your Order</string>
-    <string name="createOrder">Create Order</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
