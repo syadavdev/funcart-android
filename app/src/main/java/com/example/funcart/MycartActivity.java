@@ -1,5 +1,6 @@
 package com.example.funcart;
 
+<<<<<<< HEAD
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -43,12 +44,26 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
     UpdateCart updateCart;
 
     int index;
+=======
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+
+public class MycartActivity extends AppCompatActivity {
+
+      Toolbar tblMyCart;
+      ImageView picture;
+>>>>>>> 01223937ad61fd0a5bb832a6882181420c5135f5
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mycart);
 
+<<<<<<< HEAD
         checkout = (Button) findViewById(R.id.checkout);
         checkout.setOnClickListener(this);
         cartListView = (ListView) findViewById(R.id.cartlistView);
@@ -177,6 +192,15 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
             });
             return convertView;
         }
+=======
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+
+        }
+
+
+
+>>>>>>> 01223937ad61fd0a5bb832a6882181420c5135f5
     }
 
     public void remove(int position){

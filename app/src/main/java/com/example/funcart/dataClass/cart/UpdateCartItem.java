@@ -1,6 +1,6 @@
 package com.example.funcart.dataClass.cart;
 
-public class UpdateCartItem {
+public class UpdateCartItemDto {
 	private int ItemId;
 	private int ItemQty;
 	

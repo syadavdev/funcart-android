@@ -2,9 +2,9 @@ package com.example.funcart.dataClass.cart;
 
 import java.util.List;
 
-public class UpdateCart {
+public class UpdateCartDto {
 	private String email;
-	private List<UpdateCartItem> updateCartItem;
+	private List<UpdateCartItemDto> updateCartItem;
 	
 	public String getEmail() {
 		return email;
@@ -12,10 +12,10 @@ public class UpdateCart {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public List<UpdateCartItem> getUpdateCartItem() {
+	public List<UpdateCartItemDto> getUpdateCartItem() {
 		return updateCartItem;
 	}
-	public void setUpdateCartItem(List<UpdateCartItem> updateCartItem) {
+	public void setUpdateCartItem(List<UpdateCartItemDto> updateCartItem) {
 		this.updateCartItem = updateCartItem;
 	}
 }
