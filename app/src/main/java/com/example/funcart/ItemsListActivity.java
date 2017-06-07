@@ -85,20 +85,29 @@ public class ItemsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void makingCart(){
-        updateCart = new
-        for(int i = 0;i < itemsAlreadyInCart.getItemDtoList().size();i++){
-            itemsAlreadyInCart.getItemDtoList().get(i);
-
-        }
+        boolean flag;
+        int quantity;
+        UpdateCartItem updateCartItemObj;
         for(int i = 0;i < selectItemList.size();i++){
-            for(int j = 0;j < itemsAlreadyInCart.size();j++) {
-                if (updateCart.getUpdateCartItem().get(j).getItemId() == selectItemList.get(i).getItemId()) {
+            flag = false;
+            for(int j = 0;j < itemsAlreadyInCart.getItemDtoList().size();j++) {
+                if (flag = (selectItemList.get(i).getItemId()) ==  updateCart.getUpdateCartItem().get(j).getItemId()){
 
-                } else {
-                    int quantity = updateCart.getUpdateCartItem().get(i).getItemQty();
-                    quantity++;
-                    updateCart.getUpdateCartItem().get(i).setItemId(quantity);
+                    quantity = updateCart.getUpdateCartItem().get(j).getItemQty();
+                    updateCart.getUpdateCartItem().get(j).setItemQty(++quantity);
+
+                    quantity = 0;
+                    break;
+
                 }
+            }
+            if(!flag){
+                updateCartItemObj = new UpdateCartItem();
+
+                updateCartItemObj.setItemId(selectItemList.get(i).getItemId());
+                updateCartItemObj.setItemQty(1);
+
+                updateCart.getUpdateCartItem().add(updateCartItemObj);
             }
         }
     }
@@ -169,7 +178,7 @@ public class ItemsListActivity extends AppCompatActivity implements View.OnClick
                     updateCartItem.setItemId(cartItem.getItemId());
                     
 
-                    updateCart.getUpdateCartItem().add(updateCartItem);
+                    updateItemsListObj.add(updateCartItem);
                     count += itemsAlreadyInCart.getItemDtoList().get(i).getItemQty();
                 }
                 updateCart.setUpdateCartItem(updateItemsListObj);

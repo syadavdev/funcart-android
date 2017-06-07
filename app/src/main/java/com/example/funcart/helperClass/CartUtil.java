@@ -63,4 +63,50 @@ public class CartUtil {
             return content.toString();
         }
     }
+
+    public static String updateCartItems(String theUrl,String token,String secret,String updateCart) {
+
+        StringBuilder content = new StringBuilder();
+        int responseCode = 401;
+
+        try {
+            // create a url object
+            URL url = new URL(theUrl);
+            // create a urlconnection object
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setReadTimeout(15000);
+            connection.setConnectTimeout(15000);
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type","application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("token",token);
+            connection.setRequestProperty("secret",secret);
+
+            // wrap the urlconnection in a bufferedreader
+            OutputStream ostream = connection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ostream,"UTF-8"));
+            writer.write(updateCart);
+            writer.flush();
+            writer.close();
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            responseCode = connection.getResponseCode();
+            String line;
+            // read from the urlconnection via the bufferedreader
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line + "\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(responseCode != 200){
+            return "Error in Updating Cart" + content.toString();
+        }else{
+            return content.toString();
+        }
+    }
+
 }
