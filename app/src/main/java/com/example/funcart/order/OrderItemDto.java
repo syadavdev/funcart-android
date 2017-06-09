@@ -1,30 +1,22 @@
-package com.example.funcart.dataClass.cart;
+package com.example.funcart.order;
 
-public class CartItem {
+public class OrderItemDto {
 	
 	private String itemName;
-	private String itemPicName;
 	private int itemId;
 	private int itemQty;
 	private Double itemTotalPrice;
-	
-	public int getItemId() {
-		return itemId;
-	}
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
 	public String getItemName() {
 		return itemName;
 	}
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	public String getItemPicName() {
-		return itemPicName;
+	public int getItemId() {
+		return itemId;
 	}
-	public void setItemPicName(String itemPicName) {
-		this.itemPicName = itemPicName;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 	public int getItemQty() {
 		return itemQty;
@@ -38,4 +30,8 @@ public class CartItem {
 	public void setItemTotalPrice(Double itemTotalPrice) {
 		this.itemTotalPrice = itemTotalPrice;
 	}
+
+
+
+
 }

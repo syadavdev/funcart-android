@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.funcart.CheckoutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="@color/colorAccent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/listView"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/checkout"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="14dp"
+        android:text="Enter Address"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="13dp"
+        android:text="Shipping Address" />
+
+    <EditText
+        android:id="@+id/ShippingAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ShippingAddress"
+        android:layout_below="@+id/ShippingAddress"
+        android:text="Billing Address" />
+
+    <EditText
+        android:id="@+id/billingAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/billingAddress"
+        android:layout_marginTop="22dp"
+        android:text="Payment Option"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/checkoutRadioGroup"
+        android:layout_below="@+id/textView7"
+        android:layout_alignEnd="@+id/nextToOrder">
+
+        <RadioButton
+            android:id="@+id/byCash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView7"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textView7"
+            android:layout_weight="1"
+            android:text="byCash" />
+
+        <RadioButton
+            android:id="@+id/byCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/byCash"
+            android:layout_below="@+id/byCash"
+            android:layout_marginTop="14dp"
+            android:layout_weight="1"
+            android:text="by Debit/Credit" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/nextToOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="Create Order"
+        android:layout_below="@+id/checkoutRadioGroup"
+        android:layout_alignStart="@+id/billingAddress"
+        android:layout_marginStart="55dp" />
+
+
+</RelativeLayout>
+
+</ScrollView>

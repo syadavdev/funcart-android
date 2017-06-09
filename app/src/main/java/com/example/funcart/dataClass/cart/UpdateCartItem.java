@@ -1,19 +1,19 @@
 package com.example.funcart.dataClass.cart;
 
-public class UpdateCartItemDto {
-	private int ItemId;
-	private int ItemQty;
+public class UpdateCartItem {
+	private int itemId;
+	private int itemQty;
 	
 	public int getItemId() {
-		return ItemId;
+		return itemId;
 	}
 	public void setItemId(int itemId) {
-		ItemId = itemId;
+		this.itemId = itemId;
 	}
 	public int getItemQty() {
-		return ItemQty;
+		return itemQty;
 	}
 	public void setItemQty(int itemQty) {
-		ItemQty = itemQty;
+		this.itemQty = itemQty;
 	}
 }

@@ -44,8 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textSize="20sp"
-                android:text="Quantity" />
+                android:text="Quantity"
+                android:textColor="@color/colorindigo"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/removeFromCart"

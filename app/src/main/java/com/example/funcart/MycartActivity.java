@@ -1,11 +1,11 @@
 package com.example.funcart;
 
-<<<<<<< HEAD
+import android.content.Intent;
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.funcart.dataClass.CartItemData;
 import com.example.funcart.dataClass.cart.Cart;
 import com.example.funcart.dataClass.cart.CartItem;
 import com.example.funcart.dataClass.cart.UpdateCart;
+import com.example.funcart.dataClass.cart.UpdateCartItem;
 import com.example.funcart.helperClass.CartUtil;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -37,33 +38,19 @@ import java.util.List;
 
 public class MycartActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Cart cartData;
     Button checkout;
     ListView cartListView;
+
+    Cart cart;
     List<CartItem> cartItemList;
+
     UpdateCart updateCart;
-
-    int index;
-=======
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
-
-public class MycartActivity extends AppCompatActivity {
-
-      Toolbar tblMyCart;
-      ImageView picture;
->>>>>>> 01223937ad61fd0a5bb832a6882181420c5135f5
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mycart);
 
-<<<<<<< HEAD
         checkout = (Button) findViewById(R.id.checkout);
         checkout.setOnClickListener(this);
         cartListView = (ListView) findViewById(R.id.cartlistView);
@@ -71,8 +58,7 @@ public class MycartActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                updateCartItems("ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/updateCart");
-                new GettingCart().execute("ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/getCart");
+                new GettingCart().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/getCart");
             }
         });
 
@@ -80,16 +66,40 @@ public class MycartActivity extends AppCompatActivity {
 
     @Override
     public void onClick(View view) {
-
+        if(!cart.getItemDtoList().isEmpty() && cart.getItemDtoList() != null) {
+            makingCart();
+            if(!updateCart.getUpdateCartItem().isEmpty()) {
+                String returnString = CartUtil.updateCartItems("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/updateCart",
+                        getIntent().getExtras().getString("token"),
+                        getIntent().getExtras().getString("secret"),
+                        updateCart.getUpdateCartItem().toString());
+                System.out.println(returnString);
+            }
+            Intent intent = new Intent(this, CheckoutActivity.class);
+            intent.putExtra("token", getIntent().getExtras().getString("token"));
+            intent.putExtra("secret", getIntent().getExtras().getString("secret"));
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"No items in your Cart",Toast.LENGTH_LONG);
+        }
     }
 
-    //update customer cart
-    public void updateCartItems(String url) {
-        if (!getIntent().getExtras().getString("updateCart").toString().isEmpty() && getIntent().getExtras().getString("updateCart").toString() != null) {
-            CartUtil.updateCartItems(url, getIntent().getExtras().getString("token"),
-                    getIntent().getExtras().getString("secret"),
-                    getIntent().getExtras().getString("updateCart").toString());
+    public void makingCart(){
+        updateCart = new UpdateCart();
+        List<UpdateCartItem> updateCartItemList = new ArrayList<>();
+        UpdateCartItem updateCartItem;
+
+        cartItemList = cart.getItemDtoList();
+
+        for(CartItem cartItem : cartItemList){
+            updateCartItem = new UpdateCartItem();
+
+            updateCartItem.setItemQty(cartItem.getItemQty());
+            updateCartItem.setItemId(cartItem.getItemId());
+
+            updateCartItemList.add(updateCartItem);
         }
+        updateCart.setUpdateCartItem(updateCartItemList);
     }
 
     //getting items of Cart list
@@ -124,6 +134,23 @@ public class MycartActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            String returnString = null;
+            String updateCartString = null;
+            boolean flag = false;
+            try {
+                updateCartString = getIntent().getExtras().getString("updateCart").toString();
+
+                if (updateCartString != null) {
+                    returnString = CartUtil.updateCartItems("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/updateCart",
+                            getIntent().getExtras().getString("token"),
+                            getIntent().getExtras().getString("secret"),
+                            updateCartString);
+                    System.out.println(returnString);
+                }
+
+            }catch(NullPointerException e){
+                e.printStackTrace();
+            }
             return CartUtil.readCartItems(params[0],getIntent().getExtras().getString("token"),
                     getIntent().getExtras().getString("secret"),email);
         }
@@ -131,8 +158,14 @@ public class MycartActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String content) {
             Gson gson = new Gson();
-            Cart cart = gson.fromJson(content,Cart.class);
-            if(!cart.getItemDtoList().isEmpty()) {
+            try {
+                cart = gson.fromJson(content, Cart.class);
+            }catch(JsonParseException e){
+                e.printStackTrace();
+                cart = new Cart();
+                cart.setItemDtoList(new ArrayList<CartItem>());
+            }
+            if(!content.contains("Your cart is empty ,")) {
 
                 MycartActivity.CartItemsAdapter adapter = new CartItemsAdapter(
                         getApplicationContext(),R.layout.cart_items_adapter, (ArrayList<CartItem>) cart.getItemDtoList()
@@ -146,7 +179,7 @@ public class MycartActivity extends AppCompatActivity {
     }
 
     //Adapter for main CartItems
-    public class CartItemsAdapter extends ArrayAdapter<CartItemData> {
+    public class CartItemsAdapter extends ArrayAdapter<CartItem> {
         ArrayList<CartItem> cartItems;
         Context context;
         int resource;
@@ -169,41 +202,29 @@ public class MycartActivity extends AppCompatActivity {
 
             }
 
-            CartItemData cartItemData = getItem(position);
+            CartItem cartItemData = getItem(position);
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.cartItemImage);
-            Picasso.with(context).load(imageUrl + cartItemData.getPicName()).into(imageView);
+            Picasso.with(context).load(imageUrl + cartItemData.getItemPicName()).into(imageView);
 
             TextView txtName = (TextView) convertView.findViewById(R.id.cartItemName);
-            txtName.setText(cartItemData.getName());
+            txtName.setText(cartItemData.getItemName());
 
             TextView txtQuantity = (TextView) convertView.findViewById(R.id.cartItemQty);
-            txtQuantity.setText("Quantity : "+cartItemData.getItemQty());
+            txtQuantity.setText("Quantity : " + cartItemData.getItemQty());
 
             TextView txtPrice = (TextView) convertView.findViewById(R.id.cartItemTotalPrice);
-            txtPrice.setText("Totol price : "+Double.toString(cartItemData.getTotalPrice()) + " ₹");
+            txtPrice.setText("Totol price : " + Double.toString(cartItemData.getItemTotalPrice()) + " ₹");
 
             Button removeItem = (Button) convertView.findViewById(R.id.removeFromCart);
-            removeItem.setOnClickListener(new View.OnClickListener(){
+            removeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view){
-                    System.out.println("ITem removed");
+                public void onClick(View view) {
+                    cartItems.remove(position);
+                    cartListView.invalidateViews();
                 }
             });
             return convertView;
         }
-=======
-        Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-
-        }
-
-
-
->>>>>>> 01223937ad61fd0a5bb832a6882181420c5135f5
-    }
-
-    public void remove(int position){
-
     }
 }

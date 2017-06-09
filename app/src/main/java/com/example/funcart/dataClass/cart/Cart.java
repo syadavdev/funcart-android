@@ -2,15 +2,15 @@ package com.example.funcart.dataClass.cart;
 
 import java.util.List;
 
-public class CartDto {
+public class Cart {
 	
 	private String email;
-	private List<CartItemDto> itemDtoList;
+	private List<CartItem> itemDtoList;
 	
-	public List<CartItemDto> getItemDtoList() {
+	public List<CartItem> getItemDtoList() {
 		return itemDtoList;
 	}
-	public void setItemDtoList(List<CartItemDto> itemDtoList) {
+	public void setItemDtoList(List<CartItem> itemDtoList) {
 		this.itemDtoList = itemDtoList;
 	}
 	public String getEmail() {

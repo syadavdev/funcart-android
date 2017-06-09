@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.funcart.requestClass.LoginPost;
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         createAccount = (Button) findViewById(R.id.createAccount);
 
         //Define Edittext
-        eEmailOrPhonenumber =(EditText) findViewById(R.id.editEmailOrPhoneNumber);
+        eEmailOrPhonenumber =(EditText) findViewById(R.id.ShippingAddress);
         ePassword =(EditText) findViewById(R.id.editPassword);
 
         /*set on listener*/
@@ -119,16 +118,19 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
                         String fileName = "/CustomerData.txt";
                         File file = new File(getApplicationContext().getCacheDir().getAbsolutePath() + fileName);
-                        if(file.createNewFile()){
-                            FileWriter fileWriter = new FileWriter(file);
-                            result.put("password",ePassword.getText().toString());
-                            result.remove("responseCode");
-                            result.remove("token");
-                            result.remove("secret");
-                            fileWriter.write(result.toString());
-                            fileWriter.flush();
-                            fileWriter.close();
+                        if(file.exists()) {
+                           file.delete();
+                        }else {
+                            file = new File(getApplicationContext().getCacheDir().getAbsolutePath() + fileName);
                         }
+                        FileWriter fileWriter = new FileWriter(file,false);
+                        result.put("password",ePassword.getText().toString());
+                        result.remove("responseCode");
+                        result.remove("token");
+                        result.remove("secret");
+                        fileWriter.write(result.toString());
+                        fileWriter.flush();
+                        fileWriter.close();
 
                         startActivity(new Intent(i));
                         finish();
