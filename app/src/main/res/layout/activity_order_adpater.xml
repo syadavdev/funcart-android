@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Item Qty"
+            android:textColor="@color/colorindigo"
             android:textColorLink="@color/colorindigo"
             android:textSize="20sp"
             android:textStyle="bold" />
