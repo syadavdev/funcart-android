@@ -29,7 +29,7 @@ public class SignupActivity extends Activity  {
     EditText name,phoneNumber,email,password;
     Validator validator;
     SignUpPost signUpost =  null;
-    private String url =" http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/signup";
+    private String url =" http://ec2-52-66-27-13.ap-south-1.compute.amazonaws.com/funcart/signup";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
