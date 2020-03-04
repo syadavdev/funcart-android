@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.funcart.requestClass.SignUpPost;
 import com.example.funcart.helperClass.CustomerUtil;
 import com.example.funcart.helperClass.Validator;
+import com.example.funcart.util.AppConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ public class SignupActivity extends Activity  {
     EditText name,phoneNumber,email,password;
     Validator validator;
     SignUpPost signUpost =  null;
-    private String url =" http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/signup";
+    private String url = AppConstants.backendUrl + "/funcart/signup";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {

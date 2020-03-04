@@ -23,6 +23,7 @@ import com.example.funcart.dataClass.cart.UpdateCart;
 import com.example.funcart.dataClass.cart.UpdateCartItem;
 import com.example.funcart.helperClass.CartUtil;
 import com.example.funcart.helperClass.ItemsUtil;
+import com.example.funcart.util.AppConstants;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -66,8 +67,8 @@ public class ItemsListActivity extends AppCompatActivity implements View.OnClick
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new GetCartItems().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/getCart");
-                new GetItemsJson().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/items");
+                new GetCartItems().execute(AppConstants.backendUrl + "/funcart/getCart");
+                new GetItemsJson().execute(AppConstants.backendUrl + "/funcart/items");
             }
         });
     }
@@ -266,7 +267,7 @@ public class ItemsListActivity extends AppCompatActivity implements View.OnClick
         ArrayList<ItemData> itemDataArrayList;
         Context context;
         int resource;
-        private final String imageUrl = "http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/images/";
+        private final String imageUrl = AppConstants.backendUrl + "/images/";
 
         public ItemsListAdapter(Context context, int resource, ArrayList<ItemData> itemDataList) {
             super(context, resource, itemDataList);

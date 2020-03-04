@@ -21,6 +21,7 @@ import com.example.funcart.dataClass.cart.CartItem;
 import com.example.funcart.dataClass.cart.UpdateCart;
 import com.example.funcart.dataClass.cart.UpdateCartItem;
 import com.example.funcart.helperClass.CartUtil;
+import com.example.funcart.util.AppConstants;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.squareup.picasso.Picasso;
@@ -58,7 +59,7 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new GettingCart().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/getCart");
+                new GettingCart().execute(AppConstants.backendUrl + "/funcart/getCart");
             }
         });
 
@@ -69,7 +70,7 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
         if(!cart.getItemDtoList().isEmpty() && cart.getItemDtoList() != null) {
             makingCart();
             if(!updateCart.getUpdateCartItem().isEmpty()) {
-                String returnString = CartUtil.updateCartItems("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/updateCart",
+                String returnString = CartUtil.updateCartItems(AppConstants.backendUrl + "/funcart/updateCart",
                         getIntent().getExtras().getString("token"),
                         getIntent().getExtras().getString("secret"),
                         updateCart.getUpdateCartItem().toString());
@@ -141,7 +142,7 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
                 updateCartString = getIntent().getExtras().getString("updateCart").toString();
 
                 if (updateCartString != null) {
-                    returnString = CartUtil.updateCartItems("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/updateCart",
+                    returnString = CartUtil.updateCartItems(AppConstants.backendUrl + "/funcart/updateCart",
                             getIntent().getExtras().getString("token"),
                             getIntent().getExtras().getString("secret"),
                             updateCartString);
@@ -183,7 +184,7 @@ public class MycartActivity extends AppCompatActivity implements View.OnClickLis
         ArrayList<CartItem> cartItems;
         Context context;
         int resource;
-        private final String imageUrl = "http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/images/";
+        private final String imageUrl = AppConstants.backendUrl + "/images/";
 
         public CartItemsAdapter(Context context, int resource, ArrayList<CartItem> cartItems) {
             super(context, resource, cartItems);

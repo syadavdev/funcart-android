@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.funcart.requestClass.LoginPost;
 import com.example.funcart.helperClass.CustomerUtil;
 import com.example.funcart.helperClass.Validator;
+import com.example.funcart.util.AppConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
   private Button login, createAccount;
   private EditText  eEmailOrPhonenumber,ePassword;
 
-  private String url="http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/login";
+  private String url= AppConstants.backendUrl + "/funcart/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

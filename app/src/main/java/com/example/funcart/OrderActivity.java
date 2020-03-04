@@ -22,6 +22,7 @@ import com.example.funcart.helperClass.OrderUtil;
 import com.example.funcart.order.OrderCustomerDto;
 import com.example.funcart.order.OrderDto;
 import com.example.funcart.order.OrderItemDto;
+import com.example.funcart.util.AppConstants;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -65,8 +66,8 @@ public class OrderActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new GettingCart().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/getCart");
-                new CreateOrder().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/createOrder");
+                new GettingCart().execute(AppConstants.backendUrl + "/funcart/getCart");
+                new CreateOrder().execute(AppConstants.backendUrl + "/funcart/createOrder");
             }
         });
     }
@@ -185,7 +186,7 @@ public class OrderActivity extends AppCompatActivity {
         ArrayList<CartItem> cartItems;
         Context context;
         int resource;
-        private final String imageUrl = "http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/images/";
+        private final String imageUrl = AppConstants.backendUrl + "/images/";
 
         public CartItemsAdapter(Context context, int resource, ArrayList<CartItem> cartItems) {
             super(context, resource, cartItems);

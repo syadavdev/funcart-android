@@ -18,6 +18,7 @@ import com.example.funcart.dataClass.cart.CartItem;
 import com.example.funcart.dataClass.cart.CheckoutDto;
 import com.example.funcart.helperClass.CartUtil;
 import com.example.funcart.helperClass.CheckoutUtill;
+import com.example.funcart.util.AppConstants;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -70,7 +71,7 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
                     radioButton = (RadioButton)findViewById(selectedId);
 
                     checkoutDto.setPaymentBy(radioButton.getText().toString());
-                    new Checkout().execute("http://ec2-35-154-75-22.ap-south-1.compute.amazonaws.com/funcart/checkout");
+                    new Checkout().execute(AppConstants.backendUrl + "/funcart/checkout");
                 }
             });
 
