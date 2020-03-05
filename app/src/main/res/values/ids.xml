@@ -14,5 +14,5 @@
     <item name="editTextEmail" type="id"/>
     <item name="editTextpass" type="id"/>
     <item name="editTextphone" type="id"/>
-    <item name="username" type="id">username</item>
+    <item name="username" type="id" />
 </resources>
